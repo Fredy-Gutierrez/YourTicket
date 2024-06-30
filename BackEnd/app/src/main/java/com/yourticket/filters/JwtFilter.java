@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.yourticket.filters;
 
 import com.yourticket.configurations.AppConfig;
-import com.yourticket.repositories.IUserRepository;
 import com.yourticket.services.ITokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -33,27 +28,23 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-    
-    
+
     @Autowired
     private AppConfig appConfig;
-    
+
     @Autowired
     private ITokenService tokenService;
-    
-    @Autowired
-    private IUserRepository userRepository;
-    
+
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        if(request.getServletPath().equals("/usersession/login"))
+        if (request.getServletPath().equals("/usersession/login"))
             return true;
-        if(request.getServletPath().equals("/user/create"))
+        if (request.getServletPath().equals("/user/create"))
             return true;
-        if(request.getServletPath().equals("/user/createseller"))
+        if (request.getServletPath().equals("/user/createseller"))
             return true;
         return false;
     }
@@ -89,7 +80,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
                     filterChain.doFilter(request, response);
 
-                }else{
+                } else {
                     statusMessage = "El token de sesion proporcionado no es valido.";
                     handleError(response, statusMessage, HttpStatus.UNAUTHORIZED);
                 }
@@ -123,5 +114,5 @@ public class JwtFilter extends OncePerRequestFilter {
 
         return response;
     }
-    
+
 }

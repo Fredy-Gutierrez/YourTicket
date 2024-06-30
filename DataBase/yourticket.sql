@@ -158,9 +158,11 @@ CREATE TABLE tcheckin(
     ckeckID SERIAL,
     checkDate TIMESTAMP,
     teticket VARCHAR(250),
+    orderID INTEGER,
 
     PRIMARY KEY(ckeckID),
-    FOREIGN KEY(teticket) REFERENCES teticket(teticket)
+    FOREIGN KEY(teticket) REFERENCES teticket(teticket),
+    FOREIGN KEY(orderID) REFERENCES torder(orderID)
 );
 
 
@@ -172,10 +174,10 @@ INSERT INTO trole(roleID, description) VALUES(2, 'USER');
 INSERT INTO trole(roleID, description) VALUES(3, 'SELLER');
 --USER
 --Pass123
-INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.user', 'd01feaafb5359e1fa2c020a76ebb526fc75786b0b837e0c9a4dcabd58ad734efa469513cf66a272d5ef4b1b9646b4b39f50807afc8f8663e1c6bb23552b04cd6', TRUE, 2);
+INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.user', '$2a$10$KauXPE.nJdYTPcMIpsFfv.GearOVeNgmPVo6iv2jOeWrRAfNpveEK', TRUE, 2);
 --USERSELLER
 --Pass123
-INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.seller', 'd01feaafb5359e1fa2c020a76ebb526fc75786b0b837e0c9a4dcabd58ad734efa469513cf66a272d5ef4b1b9646b4b39f50807afc8f8663e1c6bb23552b04cd6', TRUE, 3);
+INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.seller', '$2a$10$KauXPE.nJdYTPcMIpsFfv.GearOVeNgmPVo6iv2jOeWrRAfNpveEK', TRUE, 3);
 
 --CUSTOMER
 INSERT INTO tcustomer(name,lastName,birthDay,country,addres,email,phoneNumber,userID) VALUES('Fredy', 'Gutierrez Santos', '24-04-1998', 'Mexico', 'Avenida Siempre Viva #18 Colonia San Caralampio, EDOMX', 'fredy.gtsantos@gmail.com', '+525556847138', 1);
