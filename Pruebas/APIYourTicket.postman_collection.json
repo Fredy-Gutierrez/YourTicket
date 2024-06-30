@@ -1,0 +1,1237 @@
+{
+	"info": {
+		"_postman_id": "fe45f265-371e-4d28-b13b-95c83206921c",
+		"name": "APIYourTicket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36628030"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "GetCustomer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnVzZXIiLCJpYXQiOjE3MTk2OTc2NDEsImV4cCI6MTcxOTcyNjQ0MSwianRpIjoiMTZlYThlMzEtMDM4YS00MGVjLTg0MTctNzZkNWJmYjVhZThlIn0.bqKaH0NmrdygfHdZmdIdmhcL0xDibf3qONKfHgG5azQ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/customer/get?customerId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"customer",
+								"get"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "customerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCustomer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWRkIiwiaWF0IjoxNzE5NTk4Mzk4LCJleHAiOjE3MTk2MjcxOTgsImp0aSI6IjIzZGE1N2I3LWFhYzctNGUzMy05MTlhLTFlNGFiNzhlMmQ5NSJ9.AGl3snwMOQA8CHdbsC0lDA7wWAg5-XrZ_5r4niOrGy8",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerID\": 1,\n    \"name\": \"Fredd\",\n    \"lastName\": \"GtSantos\",\n    \"birthDay\": \"1998-04-24\",\n    \"country\": \"Mexico\",\n    \"address\": \"Venustiano carranza 10 CDMX\",\n    \"email\": \"fredd.gtsantos@gmail.com\",\n    \"phone\": \"+525556847132\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/customer/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"customer",
+								"update"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "1",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"userName\": \"fredd\",\n        \"userPassword\": \"123\"\n    },\n    \"customer\": {\n        \"name\": \"Fredy3\",\n        \"lastName\": \"Gutierrez Santos2\",\n        \"birthDay\": \"1998-04-25\",\n        \"country\": \"Mexico2\",\n        \"address\": \"Avenida Siempre Viva #18 Colonia San Caralampio, EDOMX2\",\n        \"email\": \"fredy.gtsantos3@gmail.com\",\n        \"phone\": \"+525556847132\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUserSeller",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "1",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"userName\": \"sellertest\",\n        \"userPassword\": \"123\"\n    },\n    \"seller\": {\n        \"name\": \"Ticketoon\",\n        \"information\": \"Gutierrez Santos2\",\n        \"rfc\": \"TICK900424MH9\",\n        \"country\": \"Mexico\",\n        \"address\": \"Teatro villa verde, Popotla, CDMX\",\n        \"email\": \"Ticketoon@gmail.com\",\n        \"phone\": \"+525556847132\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/user/createseller",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"user",
+								"createseller"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Proxy-Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6InNlbGxlcnRlc3QiLCJpYXQiOjE3MTk2MDI5ODAsImV4cCI6MTcxOTYzMTc4MCwianRpIjoiNzljZjlmZmItOWFlYS00MGUwLWFjMWEtM2ZmZjlmMmVkZDMxIn0.JRBQuxBDZwL3upqwrb6XdRoQlrGIYCITiE83zE53wcw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userID\": 5,\n    \"userPassword\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6InNlbGxlcnRlc3QiLCJpYXQiOjE3MTk2MDI5ODAsImV4cCI6MTcxOTYzMTc4MCwianRpIjoiNzljZjlmZmItOWFlYS00MGUwLWFjMWEtM2ZmZjlmMmVkZDMxIn0.JRBQuxBDZwL3upqwrb6XdRoQlrGIYCITiE83zE53wcw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/user/get?userId=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"user",
+								"get"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "LogInUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"fredy.user\",\n    \"userPassword\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/usersession/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"usersession",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogInUserSeller",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"fredy.seller\",\n    \"userPassword\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/usersession/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"usersession",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seller",
+			"item": [
+				{
+					"name": "GetSeller",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWRkIiwiaWF0IjoxNzE5NTk4Mzk4LCJleHAiOjE3MTk2MjcxOTgsImp0aSI6IjIzZGE1N2I3LWFhYzctNGUzMy05MTlhLTFlNGFiNzhlMmQ5NSJ9.AGl3snwMOQA8CHdbsC0lDA7wWAg5-XrZ_5r4niOrGy8",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/seller/get?sellerId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"seller",
+								"get"
+							],
+							"query": [
+								{
+									"key": "sellerId",
+									"value": "2"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateSeller",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWRkIiwiaWF0IjoxNzE5NTk4Mzk4LCJleHAiOjE3MTk2MjcxOTgsImp0aSI6IjIzZGE1N2I3LWFhYzctNGUzMy05MTlhLTFlNGFiNzhlMmQ5NSJ9.AGl3snwMOQA8CHdbsC0lDA7wWAg5-XrZ_5r4niOrGy8",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sellerID\": 2,\n    \"name\": \"Ticketooon\",\n    \"information\": \"Empresa lider en venta de boletos\",\n    \"rfc\": \"TICK900424MH1\",\n    \"country\": \"Mexico\",\n    \"address\": \"Teatro villa AZUL, Popotla, CDMX\",\n    \"email\": \"Ticketooon@gmail.com\",\n    \"phone\": \"+525556847133\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/seller/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"seller",
+								"update"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "GetEvent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/get?eventId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"get"
+							],
+							"query": [
+								{
+									"key": "eventId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEvent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventName\": \"Rammstein America/s Tour\",\n    \"information\": \"Rammstein en Mexico\",\n    \"localization\": \"Arena CDMX\",\n    \"eventDay\": \"2024-06-30 19:00\",\n    \"userID\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEvent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWRkIiwiaWF0IjoxNzE5NTk4Mzk4LCJleHAiOjE3MTk2MjcxOTgsImp0aSI6IjIzZGE1N2I3LWFhYzctNGUzMy05MTlhLTFlNGFiNzhlMmQ5NSJ9.AGl3snwMOQA8CHdbsC0lDA7wWAg5-XrZ_5r4niOrGy8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventName\": \"Rammstein America Tour\",\n    \"information\": \"Rammstein en Mexico estrenando su nuevo escenario\",\n    \"localization\": \"Arena CDMX, Mexico\",\n    \"eventDay\": \"2024-07-01 19:00\",\n    \"eventID\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CancelEvent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWRkIiwiaWF0IjoxNzE5NTk4Mzk4LCJleHAiOjE3MTk2MjcxOTgsImp0aSI6IjIzZGE1N2I3LWFhYzctNGUzMy05MTlhLTFlNGFiNzhlMmQ5NSJ9.AGl3snwMOQA8CHdbsC0lDA7wWAg5-XrZ_5r4niOrGy8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventID\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllEvent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWRkIiwiaWF0IjoxNzE5NTk4Mzk4LCJleHAiOjE3MTk2MjcxOTgsImp0aSI6IjIzZGE1N2I3LWFhYzctNGUzMy05MTlhLTFlNGFiNzhlMmQ5NSJ9.AGl3snwMOQA8CHdbsC0lDA7wWAg5-XrZ_5r4niOrGy8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSellerEvent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWRkIiwiaWF0IjoxNzE5NTk4Mzk4LCJleHAiOjE3MTk2MjcxOTgsImp0aSI6IjIzZGE1N2I3LWFhYzctNGUzMy05MTlhLTFlNGFiNzhlMmQ5NSJ9.AGl3snwMOQA8CHdbsC0lDA7wWAg5-XrZ_5r4niOrGy8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/getsellerevents?userId=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"getsellerevents"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EventZones",
+			"item": [
+				{
+					"name": "GetZonesEvent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/getzones?eventId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"getzones"
+							],
+							"query": [
+								{
+									"key": "eventId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteZonesEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/deletezone?eventId=2&zoneId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"deletezone"
+							],
+							"query": [
+								{
+									"key": "eventId",
+									"value": "2"
+								},
+								{
+									"key": "zoneId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddZones",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"zoneName\": \"VIP\",\n        \"ticketPrice\": 7500.00\n    },\n    {\n        \"zoneName\": \"PLATINO\",\n        \"ticketPrice\": 5500.00\n    },\n    {\n        \"zoneName\": \"GENERAL\",\n        \"ticketPrice\": 3500.00\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/addzones?eventId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"addzones"
+							],
+							"query": [
+								{
+									"key": "eventId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EventRows",
+			"item": [
+				{
+					"name": "GetRowsZones",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/getrows?zoneId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"getrows"
+							],
+							"query": [
+								{
+									"key": "zoneId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteRowsZones",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"rowID\": 1\r\n    },\r\n    {\r\n        \"rowID\": 3\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/deleterows?zoneId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"deleterows"
+							],
+							"query": [
+								{
+									"key": "zoneId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddRowsZones",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"rowName\": \"A1\"\n    },\n    {\n        \"rowName\": \"A3\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/addrows?zoneId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"addrows"
+							],
+							"query": [
+								{
+									"key": "zoneId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SeatRow",
+			"item": [
+				{
+					"name": "GetSeatRow",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/getseats?rowId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"getseats"
+							],
+							"query": [
+								{
+									"key": "rowId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteSeatRow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"seatID\": 1\r\n    },\r\n    {\r\n        \"seatID\": 3\r\n    },\r\n    {\r\n        \"seatID\": 5\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/deleteseats?rowId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"deleteseats"
+							],
+							"query": [
+								{
+									"key": "rowId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddSeatRow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"seatNumber\": 1\n    },\n    {\n        \"seatNumber\": 2\n    },\n    {\n        \"seatNumber\": 3\n    },\n    {\n        \"seatNumber\": 4\n    },\n    {\n        \"seatNumber\": 5\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/event/addseats?rowId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"event",
+								"addseats"
+							],
+							"query": [
+								{
+									"key": "rowId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "GetOrder",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/order/get?orderId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"order",
+								"get"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserOrders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/order/getall?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"order",
+								"getall"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"paymentMethod\": \"EFECTIVO\",\r\n\"orderDate\": \"2024-06-29 18:44:50\",\r\n\"seatID\": 2,\r\n\"userID\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/order/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"order",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderID\": 1,\r\n    \"userID\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/order/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"order",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CancelOrder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnNlbGxlciIsImlhdCI6MTcxOTY5Nzg4NCwiZXhwIjoxNzE5NzI2Njg0LCJqdGkiOiIzYjVmYTk0NS04ODkxLTRjODAtYWEwZC1mY2Q5MmRlMjAwMTQifQ.QNxJuRE-pcyil72k-ZovX0l2Nm3L8zw4miWLSTxxOsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderID\": 1,\r\n    \"userID\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/order/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"order",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ETicket",
+			"item": [
+				{
+					"name": "Generate",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWN1cml0eVRva2VuaXplciIsInN1YiI6ImZyZWR5LnVzZXIiLCJpYXQiOjE3MTk3MzExNDMsImV4cCI6MTcxOTc1OTk0MywianRpIjoiZmYzNTY3NTUtYmVlOS00ZmJkLWFhYTAtNzEyM2E2ODM0ZmUxIn0.2b7x-N6_y0uxjqh-uUaVbUghWh-FmXiJp_g2sHLBlis",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eticket\": \"ce86633a-9dd2-4eb4-a951-44325c1b270e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/yourticket/eticket/checkin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"yourticket",
+								"eticket",
+								"checkin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
