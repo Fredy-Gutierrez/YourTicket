@@ -1,0 +1,22 @@
+server:
+    port: 8081
+    servlet:
+        context-path: /api/yourticket
+        
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/yourticketdb
+        username: postgres
+        password: postgres
+        driver-class-name: org.postgresql.Driver
+       
+app:
+    allowedOrigins: "*"
+    allowedMethods: GET,POST,PUT,DELETE
+    allowedHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods,Accept,Authorization,Content-Type,Method,Origin,X-Forwarded-For,X-Real-IP
+    exposedHeaders: X-Get-Header
+    ignoreSession: true
+    #Token expiration time in minutes
+    tokenKey: dG9rZW5LZXk=
+    tokenExpirationTime: 480
+    tokenCreator: securityTokenizer
