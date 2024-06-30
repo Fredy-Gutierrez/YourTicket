@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HistoryEntity {
     private int historyID;
-    
     private String paymentMethod;
     private LocalDateTime eventDate;
     private String status;
@@ -27,5 +26,5 @@ public class HistoryEntity {
     private String zoneName;
     private String eventName;
     private String location;
-    
+    private int userID;
 }

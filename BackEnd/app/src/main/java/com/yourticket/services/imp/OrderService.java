@@ -3,7 +3,7 @@ package com.yourticket.services.imp;
 import com.yourticket.dtos.request.OrderReqDTO;
 import com.yourticket.dtos.request.SeatsReqDTO;
 import com.yourticket.dtos.response.OrderResDTO;
-import com.yourticket.dtos.response.SeatsResDTO;
+import com.yourticket.dtos.response.SeatInformationDTO;
 import com.yourticket.entities.HistoryEntity;
 import com.yourticket.mappers.ListMapper;
 import com.yourticket.repositories.IHistoryRepository;
@@ -24,25 +24,25 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OrderService implements IOrderService {
-    
+
     @Autowired
     private IEventService eventService;
-    
+
     @Autowired
     private IOrderRepository orderRepository;
-    
-    @Autowired 
+
+    @Autowired
     private IPaymentRepository paymentRepository;
-    
-    @Autowired 
+
+    @Autowired
     private IHistoryRepository historyRepository;
-    
+
     @Autowired
     private ModelMapper mapperDTO;
-    
+
     @Autowired
     private ListMapper listMapper;
-    
+
     @Override
     public OrderResDTO getOrder(int orderId) {
         return mapperDTO.map(orderRepository.getOrder(orderId), OrderResDTO.class);
@@ -57,36 +57,52 @@ public class OrderService implements IOrderService {
     public OrderResDTO createOrder(OrderReqDTO order) {
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(OrderStatus.ACTIVA.toString());
-        
-        if(!paymentRepository.makePayment(order))
+
+        SeatInformationDTO seatRes = eventService.getAllSeatInformation(order.getSeatID());
+        if (seatRes == null)
             return null;
-        
-        SeatsResDTO seatRes = eventService.getSeat(order.getSeatID());
-        if(seatRes == null)
+
+        if (!seatRes.isAvailable())
             return null;
-        
-        SeatsReqDTO seat = mapperDTO.map(seatRes, SeatsReqDTO.class);
-        if(eventService.updateSeatAvalaible(seat.getRowID(), seat) == null){
+
+        if (!paymentRepository.makePayment(order))
+            return null;
+
+        SeatsReqDTO seat = new SeatsReqDTO();
+        seat.setSeatID(seatRes.getSeatID());
+        seat.setRowID(seatRes.getRowID());
+        seat.setAvailable(false);
+
+        if (eventService.updateSeatAvalaible(seat.getRowID(), seat) == null) {
             paymentRepository.refundPayment(order);
             return null;
         }
-        
+
         HistoryEntity history = new HistoryEntity();
-        //Not supported yet
+        history.setPaymentMethod(order.getPaymentMethod());
+        history.setEventDate(seatRes.getEventDay());
+        history.setStatus(seatRes.getStatus());
+        history.setSeatNumber(seatRes.getSeatNumber());
+        history.setRowName(seatRes.getRowName());
+        history.setZoneName(seatRes.getZoneName());
+        history.setEventName(seatRes.getEventName());
+        history.setLocation(seatRes.getLocalization());
+        history.setUserID(seatRes.getUserID());
+
         historyRepository.saveHistory(history);
-        
+
         int orderId = orderRepository.createOrder(order);
-        if(orderId > 0)
+        if (orderId > 0)
             return getOrder(orderId);
-        
+
         return null;
-            
+
     }
 
     @Override
     public OrderResDTO updateOrder(OrderReqDTO order) {
         order.setStatus(OrderStatus.REASIGNADA.toString());
-        if(orderRepository.updateOrder(order))
+        if (orderRepository.updateOrder(order))
             return getOrder(order.getOrderID());
         return null;
     }
@@ -94,10 +110,10 @@ public class OrderService implements IOrderService {
     @Override
     public OrderResDTO cancelOrder(OrderReqDTO order) {
         order.setStatus(OrderStatus.CANCELADA.toString());
-        
-        if(orderRepository.cancelOrder(order))
+
+        if (orderRepository.cancelOrder(order))
             return new OrderResDTO();
         return null;
     }
-    
+
 }

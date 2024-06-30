@@ -17,12 +17,14 @@ public class PaymentRepository implements IPaymentRepository {
 
     @Override
     public boolean makePayment(OrderReqDTO order) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Pagado jaja
+        return true;
     }
 
     @Override
     public boolean refundPayment(OrderReqDTO order) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Devuelto XD
+        return true;
     }
-    
+
 }
