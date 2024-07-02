@@ -32,6 +32,11 @@ public class SellerController {
         return new ResponseEntity<>(sellerService.getSeller(sellerId), HttpStatus.OK);
     }
     
+    @GetMapping(value="getbyuserid", produces = {"application/json"})
+    public ResponseEntity<SellerResDTO> getSellerByUserId(@RequestParam(name="userId") int userId){
+        return new ResponseEntity<>(sellerService.getSellerByUser(userId), HttpStatus.OK);
+    }
+    
     @PutMapping(value = "update", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<SellerResDTO> updateSeller(@RequestBody SellerReqDTO seller){
         return new ResponseEntity<>(sellerService.updateSeller(seller), HttpStatus.OK);

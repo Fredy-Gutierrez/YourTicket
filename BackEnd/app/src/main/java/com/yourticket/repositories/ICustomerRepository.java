@@ -8,7 +8,8 @@ import com.yourticket.entities.CustomerEntity;
  * @author fredd
  */
 public interface ICustomerRepository {
-    public int createCustomer(CustomerReqDTO customer);
     public CustomerEntity getCustomer(int customerId);
+    public CustomerEntity getCustomerByUser(int userId);
+    public int createCustomer(CustomerReqDTO customer);
     public boolean updateCustomer(CustomerReqDTO customer);
 }
