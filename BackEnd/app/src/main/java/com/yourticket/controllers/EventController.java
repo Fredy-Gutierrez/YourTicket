@@ -103,8 +103,11 @@ public class EventController {
         return new ResponseEntity<>(eventService.deleterows(zoneId, rows), HttpStatus.OK);
     }
     
-    
     ///********************SEATS SECTION*********************///
+    @GetMapping(value="getseat", produces = {"application/json"})
+    public ResponseEntity<SeatsResDTO> getSeat(@RequestParam(name="seatId") int seatId){
+        return new ResponseEntity<>(eventService.getSeat(seatId), HttpStatus.OK);
+    }
     
     @GetMapping(value="getseats", produces = {"application/json"})
     public ResponseEntity<List<SeatsResDTO>> getSeats(@RequestParam(name="rowId") int rowId){

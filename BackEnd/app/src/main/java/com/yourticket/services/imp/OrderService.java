@@ -110,6 +110,17 @@ public class OrderService implements IOrderService {
     @Override
     public OrderResDTO cancelOrder(OrderReqDTO order) {
         order.setStatus(OrderStatus.CANCELADA.toString());
+        
+        OrderResDTO completeOrder = getOrder(order.getOrderID());
+        SeatInformationDTO seatRes = eventService.getAllSeatInformation(completeOrder.getSeatID());
+        SeatsReqDTO seat = new SeatsReqDTO();
+        seat.setSeatID(seatRes.getSeatID());
+        seat.setRowID(seatRes.getRowID());
+        seat.setAvailable(true);
+
+        if (eventService.updateSeatAvalaible(seat.getRowID(), seat) == null) {
+            return null;
+        }
 
         if (orderRepository.cancelOrder(order))
             return new OrderResDTO();

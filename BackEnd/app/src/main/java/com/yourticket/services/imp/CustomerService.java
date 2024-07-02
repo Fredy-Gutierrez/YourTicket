@@ -28,6 +28,14 @@ public class CustomerService implements ICustomerService {
             return null;
         return mapperDTO.map(entity, CustomerResDTO.class);
     }
+    
+    @Override
+    public CustomerResDTO getCustomerByUser(int userId) {
+        CustomerEntity entity = customerRepository.getCustomerByUser(userId);
+        if(entity == null)
+            return null;
+        return mapperDTO.map(entity, CustomerResDTO.class);
+    }
 
     @Override
     public CustomerResDTO createCustomer(CustomerReqDTO customer) {
