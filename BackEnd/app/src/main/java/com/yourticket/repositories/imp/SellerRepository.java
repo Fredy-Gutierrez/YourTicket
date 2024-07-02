@@ -47,6 +47,25 @@ public class SellerRepository implements ISellerRepository {
         
         return seller;
     }
+    
+    @Override
+    public SellerEntity getSellerByUser(int userId) {
+        SellerEntity seller = null;
+        try{
+            String query = new StringBuffer("SELECT * ")
+                    .append("FROM tseller ")
+                    .append("WHERE userID = ?;")
+                    .toString();
+
+            seller = jdbc.queryForObject(query, new SellerMapper(), userId);
+        } catch (EmptyResultDataAccessException empty){
+            System.out.println("Empty");
+        }catch (DataAccessException ex){
+            System.out.println("Exception");
+        }
+        
+        return seller;
+    }
 
     @Override
     public int createSeller(SellerReqDTO seller) {
