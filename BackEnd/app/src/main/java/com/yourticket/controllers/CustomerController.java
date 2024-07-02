@@ -28,6 +28,11 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getCustomer(customerId), HttpStatus.OK);
     }
     
+    @GetMapping(value="getbyuserid", produces = {"application/json"})
+    public ResponseEntity<CustomerResDTO> getCustomerByUserId(@RequestParam(name="userId") int userId){
+        return new ResponseEntity<>(customerService.getCustomerByUser(userId), HttpStatus.OK);
+    }
+    
     @PutMapping(value = "update", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<CustomerResDTO> updateCustomer(@RequestBody CustomerReqDTO customer){
         return new ResponseEntity<>(customerService.updateCustomer(customer), HttpStatus.OK);

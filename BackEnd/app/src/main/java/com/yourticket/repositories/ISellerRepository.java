@@ -13,6 +13,7 @@ import com.yourticket.entities.SellerEntity;
  */
 public interface ISellerRepository {
     public SellerEntity getSeller(int sellerId);
+    public SellerEntity getSellerByUser(int userId);
     public int createSeller(SellerReqDTO seller);
     public boolean updateSeller(SellerReqDTO seller);
 }

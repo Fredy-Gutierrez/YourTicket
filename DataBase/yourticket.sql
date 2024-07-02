@@ -174,12 +174,12 @@ INSERT INTO trole(roleID, description) VALUES(2, 'USER');
 INSERT INTO trole(roleID, description) VALUES(3, 'SELLER');
 --USER
 --Pass123
-INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.user', '$2a$10$KauXPE.nJdYTPcMIpsFfv.GearOVeNgmPVo6iv2jOeWrRAfNpveEK', TRUE, 2);
+--INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.user', '$2a$10$KauXPE.nJdYTPcMIpsFfv.GearOVeNgmPVo6iv2jOeWrRAfNpveEK', TRUE, 2);
 --USERSELLER
 --Pass123
-INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.seller', '$2a$10$KauXPE.nJdYTPcMIpsFfv.GearOVeNgmPVo6iv2jOeWrRAfNpveEK', TRUE, 3);
+--INSERT INTO tuser(userName,userPassword,available,roleID) VALUES('fredy.seller', '$2a$10$KauXPE.nJdYTPcMIpsFfv.GearOVeNgmPVo6iv2jOeWrRAfNpveEK', TRUE, 3);
 
 --CUSTOMER
-INSERT INTO tcustomer(name,lastName,birthDay,country,addres,email,phoneNumber,userID) VALUES('Fredy', 'Gutierrez Santos', '24-04-1998', 'Mexico', 'Avenida Siempre Viva #18 Colonia San Caralampio, EDOMX', 'fredy.gtsantos@gmail.com', '+525556847138', 1);
+--INSERT INTO tcustomer(name,lastName,birthDay,country,addres,email,phoneNumber,userID) VALUES('Fredy', 'Gutierrez Santos', '24-04-1998', 'Mexico', 'Avenida Siempre Viva #18 Colonia San Caralampio, EDOMX', 'fredy.gtsantos@gmail.com', '+525556847138', 1);
 --SELLER
-INSERT INTO tseller(name,information,rfc,country,addres,email,phoneNumber,userID) VALUES('TICKETON S.A DE C.V', 'Ticketon empresa lider en organización de eventos masivos', 'TION650618NH5', 'Mexico', 'Mar Muerto #160 Colonia Miguel Hidalgo, CDMX', 'ticketon@gmail.com', '+525549345290', 2);
+--INSERT INTO tseller(name,information,rfc,country,addres,email,phoneNumber,userID) VALUES('TICKETON S.A DE C.V', 'Ticketon empresa lider en organización de eventos masivos', 'TION650618NH5', 'Mexico', 'Mar Muerto #160 Colonia Miguel Hidalgo, CDMX', 'ticketon@gmail.com', '+525549345290', 2);
