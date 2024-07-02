@@ -43,6 +43,25 @@ public class CustomerRepository implements ICustomerRepository {
         
         return customer;
     }
+    
+    @Override
+    public CustomerEntity getCustomerByUser(int userId) {
+        CustomerEntity customer = null;
+        try{
+            String query = new StringBuffer("SELECT * ")
+                    .append("FROM tcustomer ")
+                    .append("WHERE userID = ?;")
+                    .toString();
+
+            customer = jdbc.queryForObject(query, new CustomerMapper(), userId);
+        } catch (EmptyResultDataAccessException empty){
+            System.out.println("Empty");
+        }catch (DataAccessException ex){
+            System.out.println("Exception");
+        }
+        
+        return customer;
+    }
 
     @Override
     public int createCustomer(CustomerReqDTO customer) {

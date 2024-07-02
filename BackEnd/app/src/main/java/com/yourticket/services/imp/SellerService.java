@@ -33,6 +33,14 @@ public class SellerService implements ISellerService {
             return null;
         return mapperDTO.map(entity, SellerResDTO.class);
     }
+    
+    @Override
+    public SellerResDTO getSellerByUser(int userId) {
+        SellerEntity entity = sellerRepository.getSellerByUser(userId);
+        if(entity == null)
+            return null;
+        return mapperDTO.map(entity, SellerResDTO.class);
+    }
 
     @Override
     public SellerResDTO createSeller(SellerReqDTO seller) {
