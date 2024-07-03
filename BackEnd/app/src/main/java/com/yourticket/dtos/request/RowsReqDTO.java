@@ -19,5 +19,6 @@ public class RowsReqDTO {
     @NotBlank(message = "El nombre es requerido")
     @Size(min = 2, max = 10, message = "El nombre debe contener al menos {min} letras y menos de {max}")
     private String rowName;
+    
     private int zoneID;
 }

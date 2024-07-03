@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.yourticket.services.imp;
 
 import com.yourticket.dtos.request.EventReqDTO;
@@ -18,6 +14,7 @@ import com.yourticket.entities.RowsEntity;
 import com.yourticket.entities.SeatInformationEntity;
 import com.yourticket.entities.SeatsEntity;
 import com.yourticket.entities.ZonesEntity;
+import com.yourticket.exceptions.FildValidationException;
 import com.yourticket.mappers.ListMapper;
 import com.yourticket.repositories.IEventRepository;
 import com.yourticket.services.IEventService;
@@ -69,7 +66,10 @@ public class EventService implements IEventService {
     }
 
     @Override
-    public EventResDTO createEvent(EventReqDTO event) {
+    public EventResDTO createEvent(EventReqDTO event) throws FildValidationException{
+        if(event.getUserID() <= 0)
+            throw new FildValidationException("userID", "El userID debe ser mayor a 0");
+        
         event.setStatus(EventStatus.DISPONIBLE.toString());
 
         int eventId = eventRepository.createEvent(event);
@@ -79,14 +79,20 @@ public class EventService implements IEventService {
     }
 
     @Override
-    public EventResDTO updateEvent(EventReqDTO event) {
+    public EventResDTO updateEvent(EventReqDTO event) throws FildValidationException{
+        if(event.getEventID() <= 0)
+            throw new FildValidationException("eventID", "El eventID debe ser mayor a 0");
+        
         if (eventRepository.updateEvent(event))
             return mapperDTO.map(event, EventResDTO.class);
         return null;
     }
 
     @Override
-    public EventResDTO cancelEvent(EventReqDTO event) {
+    public EventResDTO cancelEvent(EventReqDTO event) throws FildValidationException{
+        if(event.getEventID() <= 0)
+            throw new FildValidationException("eventID", "El eventID debe ser mayor a 0");
+        
         event.setStatus(EventStatus.CANCELADO.toString());
 
         if (eventRepository.cancelEvent(event))
@@ -134,7 +140,12 @@ public class EventService implements IEventService {
     }
 
     @Override
-    public List<RowsResDTO> deleterows(int zoneId, List<RowsReqDTO> rows) {
+    public List<RowsResDTO> deleterows(int zoneId, List<RowsReqDTO> rows) throws FildValidationException{
+       for(RowsReqDTO row : rows){
+           if(row.getRowID() <= 0)
+               throw new FildValidationException("rowID", "El rowID debe ser mayor a 0");
+       }
+       
         if (eventRepository.deleteRows(rows))
             return getRows(zoneId);
         return null;
@@ -174,14 +185,22 @@ public class EventService implements IEventService {
     }
 
     @Override
-    public SeatsResDTO updateSeatAvalaible(int rowId, SeatsReqDTO seat) {
+    public SeatsResDTO updateSeatAvalaible(int rowId, SeatsReqDTO seat) throws FildValidationException{
+        if(seat.getSeatID() <= 0)
+            throw new FildValidationException("seatID", "El seatID debe ser mayor a 0");
+           
         if (eventRepository.updateSeatAvalaible(rowId, seat))
             return mapperDTO.map(seat, SeatsResDTO.class);
         return null;
     }
 
     @Override
-    public List<SeatsResDTO> deleteSeats(int rowId, List<SeatsReqDTO> seats) {
+    public List<SeatsResDTO> deleteSeats(int rowId, List<SeatsReqDTO> seats) throws FildValidationException{
+        for(SeatsReqDTO seat : seats){
+           if(seat.getSeatID() <= 0)
+               throw new FildValidationException("seatID", "El seatID debe ser mayor a 0");
+       }
+        
         if (eventRepository.deleteSeats(rowId, seats))
             return getSeats(rowId);
         return null;
