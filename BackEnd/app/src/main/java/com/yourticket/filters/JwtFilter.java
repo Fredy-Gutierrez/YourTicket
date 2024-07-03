@@ -46,7 +46,16 @@ public class JwtFilter extends OncePerRequestFilter {
             return true;
         if (request.getServletPath().equals("/user/createseller"))
             return true;
-        return false;
+        if (request.getServletPath().equals("/event/get"))
+            return true;
+        if (request.getServletPath().equals("/event/getall"))
+            return true;
+        if (request.getServletPath().equals("/event/getzones"))
+            return true;
+        if (request.getServletPath().equals("/event/getrows"))
+            return true;
+        
+        return request.getServletPath().equals("/event/getseats");
     }
 
     @Override
@@ -97,8 +106,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private HttpServletResponse handleError(ServletResponse servletResponse, String message, HttpStatus codeError)
             throws IOException {
-        String statusMessage = "CLIENT_ERROR";
-
         final HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         response.reset();
@@ -110,7 +117,7 @@ public class JwtFilter extends OncePerRequestFilter {
         response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
         response.setCharacterEncoding("UTF-8");
 
-        response.getWriter().write(statusMessage);
+        response.getWriter().write(message);
 
         return response;
     }
