@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.yourticket.configurations;
 
 import com.yourticket.entities.RoleEntity;
@@ -41,7 +37,7 @@ public class SessionConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
-            UserSessionEntity user = userRepository.getUser(username);
+            UserSessionEntity user = userRepository.getUserSession(username);
             RoleEntity role = roleRepository.getRole(user.getRoleID());
             user.setUserRole(role.getDescription());
             return user;

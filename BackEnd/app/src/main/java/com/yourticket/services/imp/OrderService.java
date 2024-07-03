@@ -5,6 +5,7 @@ import com.yourticket.dtos.request.SeatsReqDTO;
 import com.yourticket.dtos.response.OrderResDTO;
 import com.yourticket.dtos.response.SeatInformationDTO;
 import com.yourticket.entities.HistoryEntity;
+import com.yourticket.exceptions.FildValidationException;
 import com.yourticket.mappers.ListMapper;
 import com.yourticket.repositories.IHistoryRepository;
 import com.yourticket.repositories.IOrderRepository;
@@ -54,7 +55,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderResDTO createOrder(OrderReqDTO order) {
+    public OrderResDTO createOrder(OrderReqDTO order) throws FildValidationException{
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(OrderStatus.ACTIVA.toString());
 
@@ -100,7 +101,12 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderResDTO updateOrder(OrderReqDTO order) {
+    public OrderResDTO updateOrder(OrderReqDTO order) throws FildValidationException{
+        if(order.getOrderID() <= 0)
+            throw new FildValidationException("orderID", "El orderID debe ser mayor a 0");
+        if(order.getUserID() <= 0)
+            throw new FildValidationException("userID", "El userID debe ser mayor a 0");
+        
         order.setStatus(OrderStatus.REASIGNADA.toString());
         if (orderRepository.updateOrder(order))
             return getOrder(order.getOrderID());
@@ -108,7 +114,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderResDTO cancelOrder(OrderReqDTO order) {
+    public OrderResDTO cancelOrder(OrderReqDTO order) throws FildValidationException{
         order.setStatus(OrderStatus.CANCELADA.toString());
         
         OrderResDTO completeOrder = getOrder(order.getOrderID());

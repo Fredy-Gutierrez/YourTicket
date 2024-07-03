@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.yourticket.services.imp;
 
 import com.yourticket.dtos.request.SellerReqDTO;
 import com.yourticket.dtos.response.SellerResDTO;
 import com.yourticket.entities.SellerEntity;
+import com.yourticket.exceptions.FildValidationException;
 import com.yourticket.repositories.ISellerRepository;
 import com.yourticket.services.ISellerService;
 import org.modelmapper.ModelMapper;
@@ -43,7 +40,10 @@ public class SellerService implements ISellerService {
     }
 
     @Override
-    public SellerResDTO createSeller(SellerReqDTO seller) {
+    public SellerResDTO createSeller(SellerReqDTO seller) throws FildValidationException{
+        if(seller.getUserID() <= 0)
+            throw new FildValidationException("userID", "El userID debe ser mayor a 0");
+        
         int sellerId = sellerRepository.createSeller(seller);
         if(sellerId > 0)
             return getSeller(sellerId);
@@ -51,7 +51,10 @@ public class SellerService implements ISellerService {
     }
 
     @Override
-    public SellerResDTO updateSeller(SellerReqDTO seller) {
+    public SellerResDTO updateSeller(SellerReqDTO seller) throws FildValidationException{
+        if(seller.getSellerID() <= 0)
+            throw new FildValidationException("sellerID", "El sellerID debe ser mayor a 0");
+        
         if(sellerRepository.updateSeller(seller))
             return mapperDTO.map(seller, SellerResDTO.class);
         return null;

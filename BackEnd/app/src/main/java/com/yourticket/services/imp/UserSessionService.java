@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.yourticket.services.imp;
 
 import com.yourticket.dtos.request.UserReqDTO;
@@ -37,7 +33,7 @@ public class UserSessionService implements IUserSessionService {
     
     @Override
     public UserSessionResDTO logIn(UserReqDTO user) {
-        UserSessionEntity userEntity = userRepository.getUser(user.getUserName());
+        UserSessionEntity userEntity = userRepository.getUserSession(user.getUserName());
         if(userEntity == null)
             return null;
         
@@ -58,11 +54,6 @@ public class UserSessionService implements IUserSessionService {
     @Override
     public boolean validateToken(String token) {
         return tokenService.verifyToken(token);
-    }
-
-    @Override
-    public UserSessionResDTO logOut(int userId) {
-        return new UserSessionResDTO();  
     }
     
 }

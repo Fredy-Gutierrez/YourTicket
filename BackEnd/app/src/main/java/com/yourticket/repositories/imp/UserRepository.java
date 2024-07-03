@@ -51,9 +51,36 @@ public class UserRepository implements IUserRepository {
         
         return user;
     }
+
+    @Override
+    public UserEntity getUser(String userName) {
+        UserEntity user = null;
+        try{
+            String query = new StringBuffer("SELECT * ")
+                    .append("FROM tuser ")
+                    .append("WHERE userName = ?;")
+                    .toString();
+            
+            user = jdbc.queryForObject(query, (ResultSet rs, int rowNumber) -> {
+                UserEntity entity = new UserEntity();
+                entity.setUserID(rs.getInt("userID"));
+                entity.setUserName(rs.getString("userName"));
+                entity.setUserPassword(rs.getString("userPassword"));
+                entity.setAvailable(rs.getBoolean("available"));
+                entity.setRoleID(rs.getInt("roleID"));
+                return entity;
+            }, userName);
+        } catch (EmptyResultDataAccessException empty){
+            System.out.println("Empty");
+        }catch (DataAccessException ex){
+            System.out.println("Exception");
+        }
+        
+        return user;
+    }
     
     @Override
-    public UserSessionEntity getUser(String username) {
+    public UserSessionEntity getUserSession(String username) {
         UserSessionEntity userEntity = null;
         try{
             String query = new StringBuffer("SELECT * ")
@@ -103,10 +130,10 @@ public class UserRepository implements IUserRepository {
     public boolean updateUser(UserReqDTO user) {
         String query = new StringBuffer("UPDATE tuser ")
                     .append("SET userPassword = ? ")
-                    .append("WHERE userID = ?;")
+                    .append("WHERE userName = ?;")
                     .toString();
         
-        jdbc.update(query, user.getUserPassword(), user.getUserID());
+        jdbc.update(query, user.getUserPassword(), user.getUserName());
         
         return true;
     }
