@@ -3,6 +3,7 @@ package com.yourticket.services.imp;
 import com.yourticket.dtos.request.CustomerReqDTO;
 import com.yourticket.dtos.response.CustomerResDTO;
 import com.yourticket.entities.CustomerEntity;
+import com.yourticket.exceptions.FildValidationException;
 import com.yourticket.repositories.ICustomerRepository;
 import com.yourticket.services.ICustomerService;
 import org.modelmapper.ModelMapper;
@@ -38,7 +39,10 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public CustomerResDTO createCustomer(CustomerReqDTO customer) {
+    public CustomerResDTO createCustomer(CustomerReqDTO customer) throws FildValidationException {
+        if(customer.getUserID() <= 0)
+            throw new FildValidationException("userID", "El userID debe ser mayor a 0");
+        
         int customerId = customerRepository.createCustomer(customer);
         if(customerId > 0)
             return getCustomer(customerId);
@@ -46,7 +50,10 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public CustomerResDTO updateCustomer(CustomerReqDTO customer) {
+    public CustomerResDTO updateCustomer(CustomerReqDTO customer) throws FildValidationException{
+        if(customer.getCustomerID() <= 0)
+            throw new FildValidationException("customerID", "El customerID debe ser mayor a 0");
+        
         if(customerRepository.updateCustomer(customer))
             return mapperDTO.map(customer, CustomerResDTO.class);
         return null;
