@@ -2,12 +2,14 @@ package com.yourticket.services.imp;
 
 import com.yourticket.dtos.request.CustomerReqDTO;
 import com.yourticket.dtos.request.SellerReqDTO;
-import com.yourticket.dtos.request.NewUserReqDTO;
+import com.yourticket.dtos.request.UserCustomerReqDTO;
 import com.yourticket.dtos.request.UserReqDTO;
+import com.yourticket.dtos.request.UserSellerReqDTO;
 import com.yourticket.dtos.response.CustomerResDTO;
 import com.yourticket.dtos.response.SellerResDTO;
 import com.yourticket.dtos.response.UserResDTO;
 import com.yourticket.entities.UserEntity;
+import com.yourticket.exceptions.FildValidationException;
 import com.yourticket.repositories.IUserRepository;
 import com.yourticket.services.ICustomerService;
 import com.yourticket.services.ISellerService;
@@ -46,17 +48,21 @@ public class UserService implements IUserService {
             return null;
         return mapperDTO.map(entity, UserResDTO.class);
     }
+    
+    @Override
+    public UserResDTO getUser(String userName) {
+        UserEntity entity = userRepository.getUser(userName);
+        if(entity == null)
+            return null;
+        return mapperDTO.map(entity, UserResDTO.class);
+    }
 
     @Override
-    public UserResDTO createUser(NewUserReqDTO user) {
-        if(user.getUser() == null)
-            return null;
-        if(user.getCustomer() == null)
-            return null;
-        
+    public UserResDTO createUser(UserCustomerReqDTO user) throws FildValidationException{
         user.getUser().setRoleID(2);//User ROLE
         user.getUser().setAvailable(true);//User ROLE
         user.getUser().setUserPassword(encoder.encode(user.getUser().getUserPassword()));
+        
         int userId = userRepository.createUser(user.getUser());
         if(userId <= 0)
             return null;
@@ -71,15 +77,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserResDTO createUserSeller(NewUserReqDTO user) {
-        if(user.getUser() == null)
-            return null;
-        if(user.getSeller() == null)
-            return null;
-        
+    public UserResDTO createUserSeller(UserSellerReqDTO user) throws FildValidationException{
         user.getUser().setRoleID(3);//SELLER ROLE
         user.getUser().setAvailable(true);//User ROLE
         user.getUser().setUserPassword(encoder.encode(user.getUser().getUserPassword()));
+        
         int userId = userRepository.createUser(user.getUser());
         if(userId <= 0)
             return null;
@@ -97,7 +99,7 @@ public class UserService implements IUserService {
     public UserResDTO updateUser(UserReqDTO user) {
         user.setUserPassword(encoder.encode(user.getUserPassword()));
         if(userRepository.updateUser(user))
-            return getUser(user.getUserID());
+            return getUser(user.getUserName());
         return null;
     }
     

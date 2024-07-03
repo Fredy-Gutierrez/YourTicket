@@ -8,8 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "com.yourticket")
 public class YourticketApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(YourticketApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+            SpringApplication.run(YourticketApplication.class, args);
+    }
 }
