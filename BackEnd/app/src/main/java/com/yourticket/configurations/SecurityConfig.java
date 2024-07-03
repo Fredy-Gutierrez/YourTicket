@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.yourticket.configurations;
 
 import com.yourticket.filters.JwtFilter;
@@ -43,11 +39,21 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, AnonymousAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(
-                            new AntPathRequestMatcher("/**"),
-                            new AntPathRequestMatcher("/usersession/login")).permitAll()
+                            new AntPathRequestMatcher("/usersession/login"),
+                            new AntPathRequestMatcher("/event/getall"),
+                            new AntPathRequestMatcher("/event/get"),
+                            new AntPathRequestMatcher("/event/getzones"),
+                            new AntPathRequestMatcher("/event/getrows"),
+                            new AntPathRequestMatcher("/event/getseats")
+                            )
+                            .permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/user/create"),
                                     new AntPathRequestMatcher("/user/createseller"))
-                            .anonymous();
+                            .anonymous()
+                            .requestMatchers(new AntPathRequestMatcher("/event/**"))
+                            .hasAuthority("SELLER")
+                            .anyRequest().authenticated()
+                            ;
                 })
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider);

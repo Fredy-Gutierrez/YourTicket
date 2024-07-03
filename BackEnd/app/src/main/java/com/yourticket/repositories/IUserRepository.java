@@ -10,7 +10,8 @@ import com.yourticket.entities.UserSessionEntity;
  */
 public interface IUserRepository {
     public UserEntity getUser(int userId);
-    public UserSessionEntity getUser(String username);
+    public UserEntity getUser(String userName);
+    public UserSessionEntity getUserSession(String username);
     public int createUser(UserReqDTO user);
     public boolean updateUser(UserReqDTO user);
 }
