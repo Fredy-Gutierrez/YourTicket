@@ -13,10 +13,13 @@ import com.yourticket.dtos.response.RowsResDTO;
 import com.yourticket.dtos.response.SeatsResDTO;
 import com.yourticket.dtos.response.ZonesResDTO;
 import com.yourticket.services.IEventService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,12 +58,12 @@ public class EventController {
     }
     
     @PostMapping(value="create", consumes={"application/json"}, produces={"application/json"})
-    public ResponseEntity<EventResDTO> createEvent(@RequestBody EventReqDTO event){
+    public ResponseEntity<EventResDTO> createEvent(@Valid @RequestBody EventReqDTO event){
         return new ResponseEntity<>(eventService.createEvent(event), HttpStatus.OK);
     }
     
     @PutMapping(value="update", consumes = {"application/json"}, produces={"application/json"})
-    public ResponseEntity<EventResDTO> updateEvent(@RequestBody EventReqDTO event){
+    public ResponseEntity<EventResDTO> updateEvent(@Valid @RequestBody EventReqDTO event){
         return new ResponseEntity<>(eventService.updateEvent(event), HttpStatus.OK);
     }
     
@@ -76,7 +79,9 @@ public class EventController {
     }
     
     @PostMapping(value="addzones", consumes={"application/json"}, produces={"application/json"})
-    public ResponseEntity<List<ZonesResDTO>> addZones(@RequestParam(name="eventId") int eventId, @RequestBody List<ZonesReqDTO> zones){
+    public ResponseEntity<List<ZonesResDTO>> addZones(@RequestParam(name="eventId") int eventId, 
+            @RequestBody @NotEmpty(message = "Debe agregar al menos una zona") List<@Valid ZonesReqDTO> zones)
+    {
         return new ResponseEntity<>(eventService.addZones(eventId, zones), HttpStatus.OK);
     }
     
@@ -87,14 +92,13 @@ public class EventController {
     
     
     ///********************ROWS SECTION*********************///
-    
     @GetMapping(value="getrows", produces = {"application/json"})
     public ResponseEntity<List<RowsResDTO>> getRows(@RequestParam(name="zoneId") int zoneId){
         return new ResponseEntity<>(eventService.getRows(zoneId), HttpStatus.OK);
     }
     
     @PostMapping(value="addrows", consumes={"application/json"}, produces={"application/json"})
-    public ResponseEntity<List<RowsResDTO>> addRows(@RequestParam(name="zoneId") int zoneId, @RequestBody List<RowsReqDTO> rows){
+    public ResponseEntity<List<RowsResDTO>> addRows(@RequestParam(name="zoneId") int zoneId, @RequestBody @NotEmpty(message = "Debe agregar al menos una fila") List<@Valid RowsReqDTO> rows){
         return new ResponseEntity<>(eventService.addRows(zoneId, rows), HttpStatus.OK);
     }
     
@@ -115,7 +119,7 @@ public class EventController {
     }
     
     @PostMapping(value="addseats", consumes={"application/json"}, produces={"application/json"})
-    public ResponseEntity<List<SeatsResDTO>> addSeats(@RequestParam(name="rowId") int rowId, @RequestBody List<SeatsReqDTO> seats){
+    public ResponseEntity<List<SeatsResDTO>> addSeats(@RequestParam(name="rowId") int rowId, @RequestBody @NotEmpty(message = "Debe agregar al menos un asiento") List<@Valid SeatsReqDTO> seats){
         return new ResponseEntity<>(eventService.addSeats(rowId, seats), HttpStatus.OK);
     }
     

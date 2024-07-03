@@ -7,6 +7,7 @@ package com.yourticket.controllers;
 import com.yourticket.dtos.request.SellerReqDTO;
 import com.yourticket.dtos.response.SellerResDTO;
 import com.yourticket.services.ISellerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class SellerController {
     }
     
     @PutMapping(value = "update", consumes = {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<SellerResDTO> updateSeller(@RequestBody SellerReqDTO seller){
+    public ResponseEntity<SellerResDTO> updateSeller(@Valid @RequestBody SellerReqDTO seller){
         return new ResponseEntity<>(sellerService.updateSeller(seller), HttpStatus.OK);
     }
 }

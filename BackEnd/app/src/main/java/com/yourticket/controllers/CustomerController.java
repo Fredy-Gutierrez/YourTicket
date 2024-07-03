@@ -3,9 +3,11 @@ package com.yourticket.controllers;
 import com.yourticket.dtos.request.CustomerReqDTO;
 import com.yourticket.dtos.response.CustomerResDTO;
 import com.yourticket.services.ICustomerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +36,7 @@ public class CustomerController {
     }
     
     @PutMapping(value = "update", consumes = {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<CustomerResDTO> updateCustomer(@RequestBody CustomerReqDTO customer){
+    public ResponseEntity<CustomerResDTO> updateCustomer(@Valid @RequestBody CustomerReqDTO customer){
         return new ResponseEntity<>(customerService.updateCustomer(customer), HttpStatus.OK);
     }
 }

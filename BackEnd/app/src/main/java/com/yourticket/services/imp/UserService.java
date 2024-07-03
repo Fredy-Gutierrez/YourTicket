@@ -2,8 +2,9 @@ package com.yourticket.services.imp;
 
 import com.yourticket.dtos.request.CustomerReqDTO;
 import com.yourticket.dtos.request.SellerReqDTO;
-import com.yourticket.dtos.request.NewUserReqDTO;
+import com.yourticket.dtos.request.UserCustomerReqDTO;
 import com.yourticket.dtos.request.UserReqDTO;
+import com.yourticket.dtos.request.UserSellerReqDTO;
 import com.yourticket.dtos.response.CustomerResDTO;
 import com.yourticket.dtos.response.SellerResDTO;
 import com.yourticket.dtos.response.UserResDTO;
@@ -48,7 +49,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserResDTO createUser(NewUserReqDTO user) {
+    public UserResDTO createUser(UserCustomerReqDTO user) {
         if(user.getUser() == null)
             return null;
         if(user.getCustomer() == null)
@@ -71,7 +72,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserResDTO createUserSeller(NewUserReqDTO user) {
+    public UserResDTO createUserSeller(UserSellerReqDTO user) {
         if(user.getUser() == null)
             return null;
         if(user.getSeller() == null)

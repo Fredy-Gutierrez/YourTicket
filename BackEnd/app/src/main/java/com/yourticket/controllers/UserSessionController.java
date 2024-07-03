@@ -3,6 +3,7 @@ package com.yourticket.controllers;
 import com.yourticket.dtos.request.UserReqDTO;
 import com.yourticket.dtos.response.UserSessionResDTO;
 import com.yourticket.services.IUserSessionService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class UserSessionController {
     private IUserSessionService userSessionService;
     
     @PostMapping(value = "login", consumes=  {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<UserSessionResDTO> logIn(@RequestBody UserReqDTO user){
+    public ResponseEntity<UserSessionResDTO> logIn(@Valid @RequestBody UserReqDTO user){
         return new ResponseEntity<>(userSessionService.logIn(user), HttpStatus.OK);
     }
     

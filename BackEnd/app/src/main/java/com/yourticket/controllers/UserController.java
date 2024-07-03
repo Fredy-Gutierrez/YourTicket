@@ -1,9 +1,11 @@
 package com.yourticket.controllers;
 
-import com.yourticket.dtos.request.NewUserReqDTO;
+import com.yourticket.dtos.request.UserCustomerReqDTO;
 import com.yourticket.dtos.request.UserReqDTO;
+import com.yourticket.dtos.request.UserSellerReqDTO;
 import com.yourticket.dtos.response.UserResDTO;
 import com.yourticket.services.IUserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +34,13 @@ public class UserController {
     }
     
     @PostMapping(value = "create", consumes = { "application/json" }, produces = { "application/json" })
-    public ResponseEntity<UserResDTO> createUser(@RequestBody NewUserReqDTO user){
+    public ResponseEntity<UserResDTO> createUser(@Valid @RequestBody UserCustomerReqDTO user){
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.OK);
     }
     
     @PostMapping(value = "createseller", consumes = { "application/json" }, produces = { "application/json" })
-    public ResponseEntity<UserResDTO> createUserSeller(@RequestBody NewUserReqDTO user){
-        return new ResponseEntity<>(userService.createUserSeller(user), HttpStatus.OK);
+    public ResponseEntity<UserResDTO> createUserSeller(@Valid @RequestBody UserSellerReqDTO seller){
+        return new ResponseEntity<>(userService.createUserSeller(seller), HttpStatus.OK);
     }
     
     @PutMapping(value = "update", consumes = { "application/json" }, produces = { "application/json" })

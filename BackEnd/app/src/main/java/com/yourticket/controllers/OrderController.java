@@ -3,6 +3,7 @@ package com.yourticket.controllers;
 import com.yourticket.dtos.request.OrderReqDTO;
 import com.yourticket.dtos.response.OrderResDTO;
 import com.yourticket.services.IOrderService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class OrderController {
     }
     
     @PostMapping(value = "create", consumes = {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<OrderResDTO> createOrder(@RequestBody OrderReqDTO order){
+    public ResponseEntity<OrderResDTO> createOrder(@Valid @RequestBody OrderReqDTO order){
         return new ResponseEntity<>(orderService.createOrder(order), HttpStatus.OK);
     }
     

@@ -3,6 +3,7 @@ package com.yourticket.controllers;
 import com.yourticket.dtos.request.ETicketReqDTO;
 import com.yourticket.dtos.response.ETicketResDTO;
 import com.yourticket.services.IETicketService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class ETicketController {
     }
     
     @PostMapping(value="checkin", consumes={"application/json"}, produces = {"application/json"})
-    public ResponseEntity<ETicketResDTO> checkIn(@RequestBody ETicketReqDTO eticket){
+    public ResponseEntity<ETicketResDTO> checkIn(@Valid @RequestBody ETicketReqDTO eticket){
         return new ResponseEntity<>(eTicketService.checkIn(eticket), HttpStatus.OK);
     }
 }
