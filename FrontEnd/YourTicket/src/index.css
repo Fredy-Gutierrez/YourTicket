@@ -1,0 +1,104 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.navbar {
+  padding: 0.3rem;
+}
+
+.navbar-nav .nav-item .nav-link {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.btn {
+  border-radius: 50px;
+}
+
+.alert {
+  border-radius: 10px;
+}
+
+.home-container .card-title {
+  font-size: 20px;
+}
+
+.home-container .card-text {
+  font-size: 14px;
+}
+
+.home-container .card-img-top {
+  width: 100%;
+  height: auto;
+  max-height: 200px; 
+  object-fit: cover;
+}
+.fa {
+  color: #000; 
+}
+
+.home-container h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-container .lead {
+  font-size: 1.25rem;
+  color: #6c757d;
+}
+
+.home-container .card {
+  border-radius: 15px;
+  transition: transform 0.2s;
+}
+
+.home-container .card:hover {
+  transform: scale(1.05);
+}
+
+.home-container .card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.home-container .card-text {
+  font-size: 0.9rem;
+}
+
+.home-container .btn {
+  border-radius: 50px;
+}
