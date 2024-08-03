@@ -1,0 +1,9 @@
+
+.card-img-top {
+    max-height:40vh;
+    max-width:500px;
+    
+    height:auto;
+    width:auto;
+    overflow: hidden;
+}

@@ -21,33 +21,34 @@ public class UserSessionService implements IUserSessionService {
 
     @Autowired
     private IUserRepository userRepository;
-    
+
     @Autowired
     private ITokenService tokenService;
-    
+
     @Autowired
     private IRoleRepository roleRepository;
-    
+
     @Autowired
     private PasswordEncoder encoder;
-    
+
     @Override
     public UserSessionResDTO logIn(UserReqDTO user) {
         UserSessionEntity userEntity = userRepository.getUserSession(user.getUserName());
-        if(userEntity == null)
+        if (userEntity == null)
             return null;
-        
-        if(!encoder.matches(user.getUserPassword(), userEntity.getUserPasswordHash()))
+
+        if (!encoder.matches(user.getUserPassword(), userEntity.getUserPasswordHash()))
             return null;
-        
+
         RoleEntity roleEntity = roleRepository.getRole(userEntity.getRoleID());
         userEntity.setUserRole(roleEntity.getDescription());
-        
+
         UserSessionResDTO userSession = new UserSessionResDTO();
+        userSession.setUserID(userEntity.getUserID());
         userSession.setUserName(userEntity.getUsername());
         userSession.setUserRole(userEntity.getUserRole());
         userSession.setToken(tokenService.generateToken(userEntity));
-        
+
         return userSession;
     }
 
@@ -55,5 +56,5 @@ public class UserSessionService implements IUserSessionService {
     public boolean validateToken(String token) {
         return tokenService.verifyToken(token);
     }
-    
+
 }

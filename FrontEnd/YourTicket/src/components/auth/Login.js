@@ -25,7 +25,7 @@ const Login = ({ onLoginSuccess }) => {
       setUsernameError("");
     }
 
-    if (password.length < 6) {
+    if (password.length < 1) {
       setPasswordError("La contraseña debe tener al menos 6 caracteres.");
       valid = false;
     } else {

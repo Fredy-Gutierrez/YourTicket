@@ -17,6 +17,7 @@ import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import Acerca from "./components/pages/About";
 import Contacto from "./components/pages/Contact";
+import Buy from "./components/pages/Buy";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,14 +27,16 @@ function App() {
     setIsLoggedIn(loggedIn);
   }, []);
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (loginData) => {
     setIsLoggedIn(true);
     localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userData", JSON.stringify(loginData));
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userData");
   };
 
   return (
@@ -64,6 +67,10 @@ function App() {
         <Route
           path="/eventos"
           element={isLoggedIn ? <Eventos /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/compra/:eventid"
+          element={isLoggedIn ? <Buy /> : <Navigate to="/login" />}
         />
         <Route
           path="/zonas"
