@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserSessionEntity implements UserDetails {
+    private int userID;
     private String userName;
     private String userPasswordHash;
     private int roleID;
@@ -26,12 +27,12 @@ public class UserSessionEntity implements UserDetails {
     public String getUsername() {
         return userName;
     }
-    
+
     @Override
     public String getPassword() {
         return userPasswordHash;
     }
-    
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(userRole));

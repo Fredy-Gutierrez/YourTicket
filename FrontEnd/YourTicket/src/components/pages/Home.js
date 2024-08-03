@@ -3,6 +3,8 @@ import exclusiveEvent from "../../assets/images/Evento-Exclusivo.png";
 import secureShopping from "../../assets/images/compra-segura.png";
 import customerSupport from "../../assets/images/soporte.png";
 
+import {Link} from "react-router-dom";
+
 const Home = () => {
   return (
     <div
@@ -27,9 +29,8 @@ const Home = () => {
                 Accede a una gran variedad de eventos exclusivos desde
                 conciertos, obras de teatro, y más.
               </p>
-              <a href="#" className="btn btn-primary btn-sm">
-                Ver Más
-              </a>
+              <Link to="/Eventos" className="btn btn-primary btn-sm"> Ver Más </Link>
+
             </div>
           </div>
         </div>
