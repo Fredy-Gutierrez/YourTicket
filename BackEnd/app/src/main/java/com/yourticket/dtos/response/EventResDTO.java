@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class EventResDTO {
     private int eventID;
     private String eventName;
+    private String eventImg;
     private String information;
     private String localization;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")

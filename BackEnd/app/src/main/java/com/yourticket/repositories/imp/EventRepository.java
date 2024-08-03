@@ -97,18 +97,19 @@ public class EventRepository implements IEventRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         String query = new StringBuffer("INSERT INTO ")
-                .append("tevent(eventName,information,location,eventDay,status,userID) ")
-                .append("VALUES(?, ?, ?, ?, ?, ?);")
+                .append("tevent(eventName, eventImg,information,location,eventDay,status,userID) ")
+                .append("VALUES(?, ?, ?, ?, ?, ?, ?);")
                 .toString();
 
         jdbc.update((Connection con) -> {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, event.getEventName());
-            ps.setString(2, event.getInformation());
-            ps.setString(3, event.getLocalization());
-            ps.setTimestamp(4, java.sql.Timestamp.valueOf(event.getEventDay()));
-            ps.setString(5, event.getStatus());
-            ps.setInt(6, event.getUserID());
+            ps.setString(2, event.getEventImg());
+            ps.setString(3, event.getInformation());
+            ps.setString(4, event.getLocalization());
+            ps.setTimestamp(5, java.sql.Timestamp.valueOf(event.getEventDay()));
+            ps.setString(6, event.getStatus());
+            ps.setInt(7, event.getUserID());
             return ps;
         }, keyHolder);
 

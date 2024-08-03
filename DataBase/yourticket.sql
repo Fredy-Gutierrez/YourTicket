@@ -70,6 +70,7 @@ DROP TABLE IF EXISTS tevent;
 CREATE TABLE tevent(
     eventID SERIAL,
     eventName VARCHAR(100),
+	eventImg VARCHAR(150),
     information TEXT,
     location VARCHAR(250),
     eventDay TIMESTAMP,

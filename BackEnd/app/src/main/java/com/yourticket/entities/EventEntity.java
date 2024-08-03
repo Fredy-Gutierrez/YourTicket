@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class EventEntity {
     private int eventID;
     private String eventName;
+    private String eventImg;
     private String information;
     private String localization;
     private LocalDateTime eventDay;
