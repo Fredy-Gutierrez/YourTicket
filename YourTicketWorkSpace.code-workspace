@@ -7,5 +7,7 @@
 			"path": "BackEnd/app"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
 }

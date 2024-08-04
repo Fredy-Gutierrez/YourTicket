@@ -35,7 +35,7 @@ main {
 
 .card {
   width: 100%;
-  border: none;
+  /*border: none;*/
   border-radius: 15px;
 }
 

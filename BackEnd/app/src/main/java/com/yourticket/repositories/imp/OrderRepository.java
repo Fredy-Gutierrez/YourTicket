@@ -22,23 +22,31 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class OrderRepository implements IOrderRepository {
-    
-    
+
     @Autowired
     private JdbcTemplate jdbc;
 
     @Override
     public OrderEntity getOrder(int orderId) {
         OrderEntity event = null;
-        try{
-            String query = new StringBuffer("SELECT * ")
+        try {
+            String query = new StringBuffer(
+                    "SELECT torder.orderid, torder.paymentmethod, torder.orderdate, torder.status, torder.seatid, torder.userid, ")
+                    .append("tseatrow.seatnumber, ")
+                    .append("trowzone.rowname, ")
+                    .append("teventzone.zonename,teventzone.ticketprice, ")
+                    .append("tevent.eventname,tevent.information,tevent.eventday,tevent.location ")
                     .append("FROM torder ")
+                    .append("LEFT JOIN tseatrow ON torder.seatid = tseatrow.seatid ")
+                    .append("LEFT JOIN trowzone ON tseatrow.rowid = trowzone.rowid ")
+                    .append("LEFT JOIN teventzone ON teventzone.zoneid = trowzone.zoneid ")
+                    .append("LEFT JOIN tevent ON tevent.eventid = teventzone.eventid ")
                     .append("WHERE orderID = ?;")
                     .toString();
 
             event = jdbc.queryForObject(query, new OrderMapper(), orderId);
-        } catch (EmptyResultDataAccessException empty){
-        }catch (DataAccessException ex){
+        } catch (EmptyResultDataAccessException empty) {
+        } catch (DataAccessException ex) {
         }
         return event;
     }
@@ -46,28 +54,37 @@ public class OrderRepository implements IOrderRepository {
     @Override
     public List<OrderEntity> getOrders(int userId) {
         List<OrderEntity> order = null;
-        try{
-            String query = new StringBuffer("SELECT * ")
+        try {
+            String query = new StringBuffer(
+                    "SELECT torder.orderid, torder.paymentmethod, torder.orderdate, torder.status, torder.seatid, torder.userid, ")
+                    .append("tseatrow.seatnumber, ")
+                    .append("trowzone.rowname, ")
+                    .append("teventzone.zonename,teventzone.ticketprice, ")
+                    .append("tevent.eventname,tevent.information,tevent.eventday,tevent.location ")
                     .append("FROM torder ")
-                    .append("WHERE userID = ?;")
+                    .append("LEFT JOIN tseatrow ON torder.seatid = tseatrow.seatid ")
+                    .append("LEFT JOIN trowzone ON tseatrow.rowid = trowzone.rowid ")
+                    .append("LEFT JOIN teventzone ON teventzone.zoneid = trowzone.zoneid ")
+                    .append("LEFT JOIN tevent ON tevent.eventid = teventzone.eventid ")
+                    .append("WHERE torder.userID = ?;")
                     .toString();
 
             order = jdbc.query(query, new OrderMapper(), userId);
-        } catch (EmptyResultDataAccessException empty){
-        }catch (DataAccessException ex){
+        } catch (EmptyResultDataAccessException empty) {
+        } catch (DataAccessException ex) {
         }
         return order;
     }
 
     @Override
     public int createOrder(OrderReqDTO order) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();                
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
         String query = new StringBuffer("INSERT INTO ")
-            .append("torder(paymentMethod,orderDate,status,seatID,userID) ")
-            .append("VALUES(?, ?, ?, ?, ?);")
-            .toString();
-        
+                .append("torder(paymentMethod,orderDate,status,seatID,userID) ")
+                .append("VALUES(?, ?, ?, ?, ?);")
+                .toString();
+
         jdbc.update((Connection con) -> {
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, order.getPaymentMethod());
@@ -77,33 +94,33 @@ public class OrderRepository implements IOrderRepository {
             ps.setInt(5, order.getUserID());
             return ps;
         }, keyHolder);
-        
-        return (int)keyHolder.getKeys().get("orderID");
+
+        return (int) keyHolder.getKeys().get("orderID");
     }
 
     @Override
     public boolean updateOrder(OrderReqDTO order) {
         String query = new StringBuffer("UPDATE torder ")
-                    .append("SET userID = ?, ")
-                    .append("status = ? ")
-                    .append("WHERE orderID = ?;")
-                    .toString();
-        
+                .append("SET userID = ?, ")
+                .append("status = ? ")
+                .append("WHERE orderID = ?;")
+                .toString();
+
         jdbc.update(query, order.getUserID(), order.getStatus(), order.getOrderID());
-        
+
         return true;
     }
 
     @Override
     public boolean cancelOrder(OrderReqDTO order) {
         String query = new StringBuffer("UPDATE torder ")
-                    .append("SET status = ? ")
-                    .append("WHERE orderID = ?;")
-                    .toString();
-        
+                .append("SET status = ? ")
+                .append("WHERE orderID = ?;")
+                .toString();
+
         jdbc.update(query, order.getStatus(), order.getOrderID());
-        
+
         return true;
     }
-    
+
 }

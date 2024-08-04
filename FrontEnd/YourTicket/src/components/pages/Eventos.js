@@ -18,7 +18,7 @@ const Eventos = () => {
       <div className="row">
         {
           events.map( event => (
-              <Card carImg={event.eventImg} cardTitle={event.eventName} cardText={event.information} action={`/compra/${event.eventID}`} className="col-lg-4 d-flex align-items-stretch" />
+              <Card carImg={`${process.env.PUBLIC_URL}/assets/${event.eventImg}`} cardTitle={event.eventName} cardText={event.information} action={`/compra/${event.eventID}`} className="col-lg-4 d-flex align-items-stretch" />
           ))
         }
       </div>
