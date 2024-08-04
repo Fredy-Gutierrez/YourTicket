@@ -11,8 +11,14 @@ import java.util.List;
  */
 public interface IOrderService {
     public OrderResDTO getOrder(int orderId);
+
     public List<OrderResDTO> getOrders(int userId);
+
     public OrderResDTO createOrder(OrderReqDTO order) throws FildValidationException;
+
     public OrderResDTO updateOrder(OrderReqDTO order) throws FildValidationException;
+
+    public OrderResDTO updateOrderWithUserName(OrderReqDTO order) throws FildValidationException;
+
     public OrderResDTO cancelOrder(OrderReqDTO order) throws FildValidationException;
 }

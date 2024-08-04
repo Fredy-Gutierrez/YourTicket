@@ -25,38 +25,44 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Validated
 @RestController()
-@RequestMapping(value="order")
+@RequestMapping(value = "order")
 public class OrderController {
     @Autowired
     private IOrderService orderService;
-    
-    @GetMapping(value = "get", produces = {"application/json"})
+
+    @GetMapping(value = "get", produces = { "application/json" })
     public ResponseEntity<OrderResDTO> getOrder(
-            @RequestParam(name="orderId") @Min(value = 1, message = "El orderId debe ser mayor a 0") int orderId){
+            @RequestParam(name = "orderId") @Min(value = 1, message = "El orderId debe ser mayor a 0") int orderId) {
         return new ResponseEntity<>(orderService.getOrder(orderId), HttpStatus.OK);
     }
-    
-    @GetMapping(value = "getall", produces = {"application/json"})
+
+    @GetMapping(value = "getall", produces = { "application/json" })
     public ResponseEntity<List<OrderResDTO>> getOrders(
-            @RequestParam(name="userId") @Min(value = 1, message = "El userId debe ser mayor a 0") int userId){
+            @RequestParam(name = "userId") @Min(value = 1, message = "El userId debe ser mayor a 0") int userId) {
         return new ResponseEntity<>(orderService.getOrders(userId), HttpStatus.OK);
     }
-    
-    @PostMapping(value = "create", consumes = {"application/json"}, produces = {"application/json"})
+
+    @PostMapping(value = "create", consumes = { "application/json" }, produces = { "application/json" })
     public ResponseEntity<OrderResDTO> createOrder(
-            @Valid @RequestBody OrderReqDTO order) throws FildValidationException{
+            @Valid @RequestBody OrderReqDTO order) throws FildValidationException {
         return new ResponseEntity<>(orderService.createOrder(order), HttpStatus.OK);
     }
-    
-    @PutMapping(value = "update", consumes = {"application/json"}, produces = {"application/json"})
+
+    @PutMapping(value = "update", consumes = { "application/json" }, produces = { "application/json" })
     public ResponseEntity<OrderResDTO> updateOrder(
-            @RequestBody OrderReqDTO order) throws FildValidationException{
+            @RequestBody OrderReqDTO order) throws FildValidationException {
         return new ResponseEntity<>(orderService.updateOrder(order), HttpStatus.OK);
     }
-    
-    @PutMapping(value = "cancel", consumes={"application/json"}, produces = {"application/json"})
+
+    @PutMapping(value = "updatewithusername", consumes = { "application/json" }, produces = { "application/json" })
+    public ResponseEntity<OrderResDTO> updateOrderWithUserName(
+            @RequestBody OrderReqDTO order) throws FildValidationException {
+        return new ResponseEntity<>(orderService.updateOrderWithUserName(order), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "cancel", consumes = { "application/json" }, produces = { "application/json" })
     public ResponseEntity<OrderResDTO> cancelOrder(
-            @RequestBody OrderReqDTO order) throws FildValidationException{
+            @RequestBody OrderReqDTO order) throws FildValidationException {
         return new ResponseEntity<>(orderService.cancelOrder(order), HttpStatus.OK);
     }
 }

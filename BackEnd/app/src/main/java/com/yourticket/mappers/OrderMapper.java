@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author fredd
  */
-public class OrderMapper implements RowMapper<OrderEntity>{
+public class OrderMapper implements RowMapper<OrderEntity> {
 
     @Override
     public OrderEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -20,7 +20,16 @@ public class OrderMapper implements RowMapper<OrderEntity>{
         entity.setStatus(rs.getString("status"));
         entity.setSeatID(rs.getInt("seatID"));
         entity.setUserID(rs.getInt("userID"));
+
+        entity.setSeatNumber(rs.getInt("seatNumber"));
+        entity.setRowName(rs.getString("rowName"));
+        entity.setZoneName(rs.getString("zoneName"));
+        entity.setTicketPrice(rs.getBigDecimal("ticketPrice"));
+        entity.setEventName(rs.getString("eventName"));
+        entity.setInformation(rs.getString("information"));
+        entity.setEventDay(rs.getTimestamp("eventDay").toLocalDateTime());
+        entity.setLocalization(rs.getString("location"));
         return entity;
     }
-    
+
 }

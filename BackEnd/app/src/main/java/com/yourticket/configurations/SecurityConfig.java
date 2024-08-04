@@ -44,16 +44,14 @@ public class SecurityConfig {
                             new AntPathRequestMatcher("/event/get"),
                             new AntPathRequestMatcher("/event/getzones"),
                             new AntPathRequestMatcher("/event/getrows"),
-                            new AntPathRequestMatcher("/event/getseats")
-                            )
+                            new AntPathRequestMatcher("/event/getseats"))
                             .permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/user/create"),
                                     new AntPathRequestMatcher("/user/createseller"))
                             .anonymous()
                             .requestMatchers(new AntPathRequestMatcher("/event/**"))
                             .hasAuthority("SELLER")
-                            .anyRequest().authenticated()
-                            ;
+                            .anyRequest().authenticated();
                 })
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider);
