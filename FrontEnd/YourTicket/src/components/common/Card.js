@@ -8,7 +8,7 @@ const Card = ({carImg, cardTitle, cardText, action, className}) => {
     <div className={className}>
         <div className="card mb-3 shadow-sm">
 
-            <img className="card-img-top" src={`${process.env.PUBLIC_URL}/assets/${carImg}`} alt={cardTitle}/>
+            <img className="card-img-top" src={carImg} alt={cardTitle}/>
 
             <div className="card-body">
                 <h5 className="card-title">{cardTitle}</h5>
