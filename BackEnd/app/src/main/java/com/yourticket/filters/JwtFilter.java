@@ -54,13 +54,12 @@ public class JwtFilter extends OncePerRequestFilter {
             return true;
         if (request.getServletPath().equals("/event/getrows"))
             return true;
-        
+
         return request.getServletPath().equals("/event/getseats");
     }
 
     @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
         String statusMessage;
@@ -98,6 +97,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 handleError(response, statusMessage, HttpStatus.UNAUTHORIZED);
             }
         } catch (ServletException | IOException | UsernameNotFoundException ex) {
+            System.out.println(ex.getMessage());
             statusMessage = "No se pudo validar el token. Mensaje: Ocurrio un error no esperado.";
             handleError(response, statusMessage, HttpStatus.INTERNAL_SERVER_ERROR);
         }

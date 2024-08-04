@@ -18,6 +18,7 @@ import Footer from "./components/common/Footer";
 import Acerca from "./components/pages/About";
 import Contacto from "./components/pages/Contact";
 import Buy from "./components/pages/Buy";
+import EditarOrden from "./components/pages/EditarOrden";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -71,6 +72,10 @@ function App() {
         <Route
           path="/compra/:eventid"
           element={isLoggedIn ? <Buy /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/editarorden/:orderid"
+          element={isLoggedIn ? <EditarOrden /> : <Navigate to="/login" />}
         />
         <Route
           path="/zonas"
